@@ -1,0 +1,10 @@
+com\xh\saas\demo\log\WebLogControllerAop.class
+com\xh\saas\demo\config\Swagger2Config.class
+com\xh\saas\demo\log\MyLog.class
+com\xh\saas\demo\SpringbootApplication.class
+com\xh\saas\demo\service\impl\UserServiceImpl.class
+com\xh\saas\demo\controller\UserController.class
+com\xh\saas\demo\mapper\UserMapper.class
+com\xh\saas\demo\service\IUservice.class
+com\xh\saas\demo\utils\AjaxJson.class
+com\xh\saas\demo\model\User.class

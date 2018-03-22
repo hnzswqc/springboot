@@ -1,2 +1,2 @@
 # springboot
-springboot+mybatis+swagger2
+springboot+maven+mybatis+swagger2
