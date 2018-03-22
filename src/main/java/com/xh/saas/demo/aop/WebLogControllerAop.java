@@ -5,7 +5,7 @@
  * 版本号:  V1.0
  * 开发单位: 北京学汇教育科技股份公司-研发部
  */
-package com.xh.saas.demo.log;
+package com.xh.saas.demo.aop;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

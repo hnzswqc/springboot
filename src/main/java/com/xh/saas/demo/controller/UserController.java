@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xh.saas.demo.log.MyLog;
+import com.xh.saas.demo.aop.MyLog;
 import com.xh.saas.demo.model.User;
 import com.xh.saas.demo.service.IUservice;
 import com.xh.saas.demo.utils.AjaxJson;
