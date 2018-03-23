@@ -28,6 +28,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import com.core.base.annotation.MyLog;
+
 /**    
  * 项目名称: springmvc <br/>
  * 文件名称: WebLogControllerAop.java <br/>
@@ -85,6 +87,7 @@ public class WebLogControllerAop {
 	 * @author King   <br/>  
 	 * @createTime 2018年3月22日 下午2:43:37<br/>
 	 */
+	@SuppressWarnings("unused")
 	@Before("controllerAspect()")
 	public void doBeforeAdvice(JoinPoint joinPoint){
 		System.out.println("我是前置通知!!!");
@@ -111,9 +114,11 @@ public class WebLogControllerAop {
         Object[] arguments = joinPoint.getArgs();  
         Method method = ms.getMethod();  
         //方法的注解对象  
-        MyLog myLog = method.getAnnotation(MyLog.class);   
-	    System.out.println(myLog.model());
-	    System.out.println(myLog.operate());
+        MyLog myLog = method.getAnnotation(MyLog.class);
+        if(null!=myLog){
+        	System.out.println(myLog.key());
+        	System.out.println(myLog.value());
+        }
 	    
 	    
 	    

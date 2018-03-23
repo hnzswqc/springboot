@@ -9,6 +9,7 @@ package com.xh.saas.demo.service;
 
 import java.util.List;
 
+import com.core.base.service.IBaseService;
 import com.xh.saas.demo.model.User;
 
 /**    
@@ -19,20 +20,17 @@ import com.xh.saas.demo.model.User;
  * @author King  <br/>
  * @createTime 2018年3月21日 上午8:45:41 <br/>
  */
-public interface IUservice {
+public interface IUservice extends IBaseService<User, Integer>{
 
- 	boolean deleteByPrimaryKey(Integer userId);
-
- 	boolean insert(User record);
-
- 	boolean insertSelective(User record);
-
-    User selectByPrimaryKey(Integer userId);
-
-    boolean updateByPrimaryKeySelective(User record);
-
-    boolean updateByPrimaryKey(User record);
-    
+	/**
+	 * 
+	 * 方法描述: 自定义方法<br/> 
+	 * @param <br/>   
+	 * @return <br/>   
+	 * @version   1.0<br/> 
+	 * @author King   <br/>  
+	 * @createTime 2018年3月23日 下午1:05:21<br/>
+	 */
     List<User> findAllUser(int pageNum, int pageSize);
     
 }

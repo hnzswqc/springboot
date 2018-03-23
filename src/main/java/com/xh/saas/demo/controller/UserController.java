@@ -13,10 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.xh.saas.demo.aop.MyLog;
+import com.core.base.annotation.MyLog;
+import com.core.base.controller.impl.BaseController;
 import com.xh.saas.demo.model.User;
 import com.xh.saas.demo.service.IUservice;
-import com.xh.saas.demo.utils.AjaxJson;
+import com.core.base.model.AjaxJson;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -34,10 +35,25 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "UserController", description = "用户管理", tags = "基础平台")
 @Controller
 @RequestMapping(value = "/user")
-public class UserController {
+public class UserController extends BaseController<User, Integer>{
 	
 	@Autowired
     private IUservice userService = null;
+	
+	/**
+	 * 
+	 * 方法描述：信息注入<br/>
+	 * 创建人：King   <br/>
+	 * 创建时间：2016-10-9 上午11:31:58<br/>         
+	 * @param <br/>   
+	 * @return <br/>   
+	 * @version   1.0<br/>
+	 */
+	@Autowired
+	public void setBaseService() {
+		super.setBaseService(userService);
+	}
+	
 	
 	public final String MODEL_NAME="用户管理模块";
 	
@@ -51,11 +67,10 @@ public class UserController {
 	@ResponseBody
     @RequestMapping(value = "/add", produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
     public AjaxJson add(User user){
-		boolean result = userService.insert(user);
-        return new AjaxJson(result?true:false,user);
+        return super.add(user);
     }
 
-	@MyLog(model=MODEL_NAME,operate="获取用户信息列表")
+	@MyLog(key=MODEL_NAME,value="获取用户信息列表")
 	@ApiOperation(value = "获取用户信息列表",notes="默认查询第一页前10条")
     @ApiImplicitParams({
         @ApiImplicitParam(paramType="query",name="pageNum",dataType="int",required=false,value="当前页",defaultValue="1"),
@@ -72,10 +87,9 @@ public class UserController {
         @ApiImplicitParam(paramType="query",name="userId",dataType="int",required=true,value="用户Id")
     })
     @ResponseBody
-	@RequestMapping(value="/del",  produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
-    public AjaxJson del(Integer userId){
-		boolean result = userService.deleteByPrimaryKey(userId);
-    	return new AjaxJson(result?true:false,userId);
+	@RequestMapping(value="/delele",  produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
+    public AjaxJson delele(Integer userId){
+    	return super.delete(userId);
     }
     
 	@ApiOperation(value = "修改用户")
@@ -86,10 +100,9 @@ public class UserController {
         @ApiImplicitParam(paramType="query",name="phone",dataType="String",required=true,value="电话",defaultValue="")
     })
     @ResponseBody
-    @RequestMapping(value = "/upd", produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
-    public AjaxJson upd(User user){
-		boolean result = userService.updateByPrimaryKey(user);
-    	return new AjaxJson(result?true:false,user);
+    @RequestMapping(value = "/update", produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
+    public AjaxJson update(User user){
+    	return super.updateByPrimaryKeySelective(user);
     }
     
 	@ApiOperation(value = "获取用户信息")
@@ -99,7 +112,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/get", produces = {"application/json;charset=UTF-8"},method=RequestMethod.POST)
     public AjaxJson get(Integer userId){
-    	return new AjaxJson(true,userService.selectByPrimaryKey(userId));
+    	return super.getByPrimaryKey(userId);
     }
 	 
 }

@@ -1,7 +1,14 @@
 package com.xh.saas.demo.model;
 
-public class User {
-    private Integer userId;
+import com.core.base.model.BaseModel;
+
+public class User extends BaseModel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private Integer userId;
 
     private String userName;
 
